@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Portfolio — Crypto & Bot Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --accent: #00ff88;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --text: #e8e8f0;
+    --muted: #6b7280;
+    --border: rgba(255,255,255,0.07);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Syne', sans-serif; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+
+  /* grid bg */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  /* NAV */
+  nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Space Mono', monospace; font-size: 14px; color: var(--accent); letter-spacing: 2px; }
+  .nav-links { display: flex; gap: 28px; font-size: 13px; color: var(--muted); }
+  .nav-links a:hover { color: var(--accent); transition: color 0.2s; }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; }
+  .hero-tag { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--accent); letter-spacing: 3px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .hero-tag::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--accent); }
+  .hero h1 { font-size: clamp(36px, 6vw, 64px); font-weight: 800; line-height: 1.05; margin-bottom: 24px; }
+  .hero h1 span { color: var(--accent); }
+  .hero h1 em { font-style: normal; color: var(--accent3); }
+  .hero-desc { font-size: 16px; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 36px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #000; padding: 12px 28px; border-radius: 6px; font-weight: 700; font-size: 14px; letter-spacing: 0.5px; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline { border: 1px solid var(--border); color: var(--text); padding: 12px 28px; border-radius: 6px; font-size: 14px; transition: border-color 0.2s; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin: 60px 0; }
+  .stat { background: var(--bg2); padding: 24px 20px; text-align: center; }
+  .stat-num { font-size: 28px; font-weight: 800; color: var(--accent); font-family: 'Space Mono', monospace; }
+  .stat-lbl { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.5px; }
+
+  /* SKILLS */
+  .section { padding: 60px 0; }
+  .section-tag { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); letter-spacing: 3px; margin-bottom: 12px; }
+  .section h2 { font-size: 28px; font-weight: 800; margin-bottom: 32px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 12px; }
+  .skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-icon { font-size: 22px; margin-bottom: 10px; }
+  .skill-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .skill-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  /* PROJECTS */
+  .projects-grid { display: flex; flex-direction: column; gap: 16px; }
+  .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; transition: border-color 0.2s; }
+  .project-card:hover { border-color: var(--accent); }
+  .project-left { flex: 1; }
+  .project-tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+  .project-name { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .ptag { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
+  .project-links { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .proj-link { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); border: 1px solid rgba(0,255,136,0.2); padding: 6px 14px; border-radius: 6px; white-space: nowrap; transition: background 0.2s; }
+  .proj-link:hover { background: rgba(0,255,136,0.08); }
+  .proj-link.gh { color: var(--muted); border-color: var(--border); }
+  .proj-link.gh:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+  /* CONTACT */
+  .contact { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 48px 36px; text-align: center; margin: 40px 0 80px; }
+  .contact h2 { font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+  .contact p { color: var(--muted); font-size: 15px; margin-bottom: 28px; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-link { display: flex; align-items: center; gap: 8px; background: var(--bg3); border: 1px solid var(--border); padding: 10px 20px; border-radius: 8px; font-size: 13px; transition: border-color 0.2s; }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 24px 0; text-align: center; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+  .hero, .stats, .section { animation: fadeUp 0.6s ease both; }
+  .section { animation-delay: 0.1s; }
+
+  /* CURSOR DOT */
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 6px; animation: blink 1.2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <div class="nav-logo">// DEV_PORTFOLIO</div>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com" target="_blank">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-tag">Available for freelance</div>
+    <h1>
+      Crypto Bots.<br>
+      <span>Telegram</span> Tools.<br>
+      <em>Smart</em> Automation.
+    </h1>
+    <p class="hero-desc">
+      Python & Java developer with 2+ years building trading bots, Telegram automation, and AI-powered tools for the Web3 ecosystem. I build things that work 24/7.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Hire Me on LaborX</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">2+</div>
+      <div class="stat-lbl">Years Experience</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-lbl">Bots Built</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Exchanges Integrated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-lbl">Bot Uptime</div>
+    </div>
+  </div>
+
+  <section class="section" id="skills">
+    <div class="section-tag">// SKILLS</div>
+    <h2>What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-desc">Bots, automation, APIs, data scripts, trading logic</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☕</div>
+        <div class="skill-name">Java</div>
+        <div class="skill-desc">Backend services, REST APIs, server-side bot logic</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">✈️</div>
+        <div class="skill-name">Telegram API</div>
+        <div class="skill-desc">python-telegram-bot, Telethon, MTProto, userbot</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <div class="skill-name">Termux</div>
+        <div class="skill-desc">Android automation, Linux shell, mobile-ready bots</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">₿</div>
+        <div class="skill-name">Crypto APIs</div>
+        <div class="skill-desc">Binance, Bybit, OKX — spot, futures, real-time data</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Stock & TA</div>
+        <div class="skill-desc">Technical & fundamental analysis, algo trading strategies</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-tag">// PROJECTS</div>
+    <h2>What I've Built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-left">
+          <div class="project-tag">CRYPTO BOT</div>
+          <div class="project-name">Binance Auto Trader</div>
+          <div class="project-desc">Python-based trading bot with RSI + MACD strategy. Supports spot & futures, stop-loss, take-profit, and Telegram alerts for every trade. Runs 24/7 on VPS or Termux.</div>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Binance API</span>
+            <span class="ptag">RSI/MACD</span>
+            <span class="ptag">Termux</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com" class="proj-link gh">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-left">
+          <div class="project-tag">TELEGRAM BOT</div>
+          <div class="project-name">Crypto Signal Bot</div>
+          <div class="project-desc">Telegram bot that sends real-time buy/sell signals based on technical analysis. Supports multiple coins, inline keyboards, and auto-posting to channels. Built with python-telegram-bot.</div>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Telegram API</span>
+            <span class="ptag">TA-Lib</span>
+            <span class="ptag">CoinGecko API</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com" class="proj-link gh">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-left">
+          <div class="project-tag">AUTOMATION</div>
+          <div class="project-name">Termux Task Scheduler</div>
+          <div class="project-desc">Python + shell automation toolkit for Android/Linux. Automates API calls, file management, scheduled tasks, and bot restarts — fully mobile-friendly via Termux.</div>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">Bash</span>
+            <span class="ptag">Termux</span>
+            <span class="ptag">Cron</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com" class="proj-link gh">GitHub ↗</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-left">
+          <div class="project-tag">AI BOT</div>
+          <div class="project-name">AI Telegram Assistant</div>
+          <div class="project-desc">Telegram chatbot powered by OpenAI API. Supports group chats, command-based queries, context memory, and auto-moderation. Deployed on a free-tier VPS.</div>
+          <div class="project-tags">
+            <span class="ptag">Python</span>
+            <span class="ptag">OpenAI API</span>
+            <span class="ptag">Telethon</span>
+            <span class="ptag">Java Backend</span>
+          </div>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com" class="proj-link gh">GitHub ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="dot"></div>
+    <h2>Open for Work</h2>
+    <p>Looking for crypto bots, Telegram tools, or Python automation? Let's build it.</p>
+    <div class="contact-links">
+      <a href="https://laborx.com" target="_blank" class="contact-link">💼 LaborX Profile</a>
+      <a href="https://t.me/yourusername" target="_blank" class="contact-link">✈️ Telegram</a>
+      <a href="https://github.com/yourusername" target="_blank" class="contact-link">🐙 GitHub</a>
+      <a href="https://upwork.com" target="_blank" class="contact-link">🔗 Upwork</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      built with Python, bots & chai ☕ &nbsp;·&nbsp; available on LaborX, Upwork & Fiverr
+    </div>
+  </footer>
+</div>
+
+</body>
+</html>
