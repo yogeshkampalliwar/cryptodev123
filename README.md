@@ -2,12 +2,12 @@
 
 ```python
 developer = {
-    "name"        : "Your Name",
-    "location"    : "Bhayandar, India 🇮🇳",
+    "name"        : "yogesh kamplliwar",
+    "location"    : "nagpu ,Maharashtra, India 🇮🇳",
     "skills"      : ["Python", "Java", "Telegram API", "Termux"],
     "speciality"  : "Crypto Trading Bots & Automation",
     "available"   : True,
-    "contact"     : "t.me/yourusername"
+    "contact"     : "t.me/ethsolsna"
 }
 ```
 
