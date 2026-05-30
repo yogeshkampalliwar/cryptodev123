@@ -3,9 +3,9 @@
 ```python
 developer = {
     "name"        : "yogesh kamplliwar",
-    "location"    : "nagpu ,Maharashtra, India 🇮🇳",
+    "location"    : "Nagpur ,Maharashtra, India 🇮🇳",
     "skills"      : ["Python", "Java", "Telegram API", "Termux"],
-    "speciality"  : "Crypto Trading Bots & Automation",
+    "speciality"  : "Crypto Trading us stocks ,Bots & Automation",
     "available"   : True,
     "contact"     : "t.me/ethsolsna"
 }
